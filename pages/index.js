@@ -21,37 +21,39 @@ export default function Home() {
       if (response.status !== 200) {
         throw data.error || new Error(`Request failed with status ${response.status}`);
       }
-
+      // let newText = data.text.replace(/(\d\.)/g, '$1\n');
+      // data.text = newText;
       setResult(data.result);
       setAnimalInput("");
-    } catch(error) {
-      // Consider implementing your own error handling logic here
-      console.error(error);
-      alert(error.message);
-    }
+      } catch(error) {
+        // Consider implementing your own error handling logic here
+        console.error(error);
+        alert(error.message);
+      }
+
   }
 
   return (
     <div>
       <Head>
-        <title>OpenAI Quickstart</title>
-        <link rel="icon" href="/dog.png" />
+        <title>Fun Facts Generator</title>
+        <link rel="icon" href="/circle.png" />
       </Head>
 
       <main className={styles.main}>
-        <img src="/dog.png" className={styles.icon} />
-        <h3>Name my pet</h3>
+        <img src="/circle.png" className={styles.icon} />
+        <h3>Fun Facts Generator</h3>
         <form onSubmit={onSubmit}>
           <input
             type="text"
             name="animal"
-            placeholder="Enter an animal"
+            placeholder="Enter something"
             value={animalInput}
             onChange={(e) => setAnimalInput(e.target.value)}
           />
-          <input type="submit" value="Generate names" />
+          <input type="submit" value="Generate" />
         </form>
-        <div className={styles.result}>{result}</div>
+        <pre className={styles.result}>{result}</pre>
       </main>
     </div>
   );
